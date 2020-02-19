@@ -39,6 +39,7 @@ if ($route[4] != null) {
 }
 
 
+
 // Create array full of table names
 $tables = ['posts'];
 
@@ -47,14 +48,15 @@ if (in_array($tableName, $tables)) {
 
     // Include the DB
     include_once './classes/Database.php';
+    include_once './api/Requests.php';
 
     // Include the api matching route
-    if (strcmp($tableName, 'posts') == 0) include_once './api/posts.php';
+    if (strcmp($tableName, 'posts') == 0) include_once './api/newPosts.php';
 
 } else {
 
-    // If table route does not exist then return error
-    echo json_encode(['message' => 'Method does not exist']);
+    // If route does not exist then return error
+    echo json_encode(['message' => 'Route does not exist']);
 }
 
 

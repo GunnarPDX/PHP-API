@@ -19,7 +19,7 @@ class DB
     // This function handles queries
     public static function query($query, $params = array())
     {
-        // Reference this class instance and connect
+        // Reference this class instance and connect to db before query
         $statement = self::connect()->prepare($query);
 
         // Execute the query
