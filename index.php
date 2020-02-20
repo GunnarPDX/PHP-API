@@ -51,7 +51,18 @@ if (in_array($tableName, $tables)) {
     include_once './api/Requests.php';
 
     // Include the api matching route
-    if (strcmp($tableName, 'posts') == 0) include_once './api/newPosts.php';
+    //if (strcmp($tableName, 'auth') == 0) include_once './api/auth.php';
+    //if (strcmp($tableName, 'posts') == 0) include_once './api/newPosts.php';
+
+    switch ($tableName) {
+        case 'posts':
+            include_once './api/newPosts.php';
+            break;
+        case 'auth':
+            //$tableName = 'users';
+            echo "Auth has not been added yet";
+            break;
+    }
 
 } else {
 

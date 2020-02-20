@@ -2,7 +2,9 @@
 
 if ($method == 'GET') {
 
-    echo Req::GET($tableName, $id);
+    $data = Req::GET($tableName, $id);
+
+    echo json_encode($data);
 
 } else if ($method == 'POST') {
 
@@ -20,7 +22,7 @@ if ($method == 'GET') {
 
         $data = Req::POST($tableName, $query, $params);
 
-        echo json_encode(['message' => 'Post added successfully', 'success' => true, 'post' => $data[0]]);
+        echo json_encode(['message' => 'Post added successfully', 'success' => true, 'post' => $data]);
 
     }
 
