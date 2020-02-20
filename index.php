@@ -1,6 +1,4 @@
 <?php
-//MAMP App
-
 
 // Allow any cross origin access
 header('Access-Control-Allow-Origin: *');
@@ -11,19 +9,11 @@ header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT');
 // Set request method var
 $method = $_SERVER['REQUEST_METHOD'];
 
-// Get request URI for route
-$request_uri = $_SERVER['REQUEST_URI'];
-
-
-// Sanitize URI
-$route = filter_var($request_uri, FILTER_SANITIZE_URL);
-
-// Delimit the route into array
-$route = explode('/', $route);
+// Get, Sanitize, and Delimit the URI route into array
+$route = explode('/', filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL));
 
 // Create model/table var
 $tableName = (string) $route[3];
-
 
 // Check for id
 if ($route[4] != null) {
@@ -38,8 +28,6 @@ if ($route[4] != null) {
 
 }
 
-
-
 // Create array full of table names
 $tables = ['posts'];
 
@@ -49,17 +37,17 @@ if (in_array($tableName, $tables)) {
     // Include the DB
     include_once './classes/Database.php';
 
-    // Include the api matching route
-    //if (strcmp($tableName, 'auth') == 0) include_once './api/auth.php';
-    //if (strcmp($tableName, 'posts') == 0) include_once './api/newPosts.php';
-
+    // Router switch
     switch ($tableName) {
         case 'posts':
-            include_once './api/newPosts.php';
+            // Include posts 'controller'
+            include_once './api/posts.php';
+
             break;
         case 'auth':
-            //$tableName = 'users';
-            echo "Auth has not been added yet";
+            // Include auth 'controller'
+            include_once './api/auth.php';
+
             break;
     }
 

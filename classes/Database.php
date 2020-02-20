@@ -1,5 +1,8 @@
 <?php
 
+// Database class
+// This includes methods used to setup the DB connection and perform basic CRUD actions
+
 class DB
 {
     // This function handles the DB connection
@@ -28,17 +31,17 @@ class DB
         // If query starts with select
         if (explode(' ', $query)[0] == 'SELECT') {
 
-            //
+            // Fetch data
             $data = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-            //
+            // Return data
             return $data;
-
         }
     }
 
     // Basic CRUD methods
 
+    // CREATE
     public static function create($tableName, $postQuery, $postParams) {
 
         // Create query
@@ -49,6 +52,7 @@ class DB
 
     }
 
+    // READ
     public static function read($tableName, $id) {
 
         // If data is present
@@ -65,6 +69,7 @@ class DB
         }
     }
 
+    // UPDATE
     public static function update($tableName, $id, $putQuery, $putParams) {
 
         // Update the Post in the Database
@@ -75,6 +80,7 @@ class DB
 
     }
 
+    // DELETE
     public static function delete($tableName, $id) {
 
         // Find obj and delete
