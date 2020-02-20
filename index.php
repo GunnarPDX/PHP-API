@@ -48,7 +48,6 @@ if (in_array($tableName, $tables)) {
 
     // Include the DB
     include_once './classes/Database.php';
-    include_once './api/Requests.php';
 
     // Include the api matching route
     //if (strcmp($tableName, 'auth') == 0) include_once './api/auth.php';
